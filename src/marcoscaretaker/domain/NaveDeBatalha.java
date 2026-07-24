@@ -3,7 +3,7 @@ package marcoscaretaker.domain;
 public class NaveDeBatalha extends NaveEspacial{
     private NivelAmeaca nivelAmeaca = NivelAmeaca.SEGURO;
     int poderDeFogo;
-    private boolean explodiu = false;
+
 
     public NaveDeBatalha(String name, double integridadeCasco, TipoCombustivel combustivel) {
         super(name, integridadeCasco, combustivel);
@@ -32,11 +32,20 @@ public class NaveDeBatalha extends NaveEspacial{
 
         System.out.println("A nave "+this.getName());
         System.out.println("Com o combustível "+this.getCombustivel());
-        System.out.println("ESTADO ATUAL QUE A NAVE SE ENCONTRA: ");
-        if(explodiu){
-            System.out.println("NÃO A MAIS NADA A SER FEITO NAVE EXPLODIU... :(((");
+        if(this.isExplodiu()){
+            System.out.println("NÃO HÁ MAIS NADA A SER FEITO A NAVE "+this.getName()+" EXPLODIU... :(((");
             return;
+        }else{
+            System.out.println("Integridade do casco: {"+this.getIntegridadeCasco()+"} com o poder de fogo de ["+this.poderDeFogo+"un]");
+            if(this.getIntegridadeCasco() <= 20 && this.getIntegridadeCasco() > 0){
+                System.out.println("NAVE ESPACIAL COM DANO SEVERO COM MENOS DE 20% DE SUA INTEGRIDADE TOTAL, PERIGO DE EXPLOSAO IMINENTE");
+            }else if(this.getIntegridadeCasco() <= 0){
+                this.setExplodiu(true);
+                System.out.println("NÃO HÁ MAIS NADA A SER FEITO A NAVE "+this.getName()+" EXPLODIU... :(((");
+                return;
+            }
         }
+        System.out.println("ESTADO ATUAL QUE A NAVE SE ENCONTRA: ");
         switch (this.nivelAmeaca){
             case PERIGO_IMINENTE:
                 System.out.println("PERIGO IMINENTE!! -NAVE ATACANDO COM PODER DE FOGO DE 5un - SOFREU FORTE DANO");
@@ -48,13 +57,8 @@ public class NaveDeBatalha extends NaveEspacial{
                 System.out.println("SEGURO!! -NAVE PATRULHANDO... TUDO CALMO POR AQUI...");
                 break;
         }
-        System.out.println("Integridade do casco: {"+this.getIntegridadeCasco()+"} com o poder de fogo de ["+this.poderDeFogo+"un]");
-        if(this.getIntegridadeCasco() <= 20 && this.getIntegridadeCasco() > 0){
-            System.out.println("NAVE ESPACIAL COM DANO SEVERO COM MENOS DE 20% DE SUA INTEGRIDADE TOTAL, PERIGO DE EXPLOSAO IMINENTE");
-        }else if(this.getIntegridadeCasco() <= 0){
-            explodiu = true;
-        }
     }
+
 
     public int getPoderDeFogo() {
         return poderDeFogo;

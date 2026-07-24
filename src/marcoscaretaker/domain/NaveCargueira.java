@@ -1,10 +1,9 @@
 package marcoscaretaker.domain;
 
-public class NaveCargueira extends NaveEspacial{
+public class NaveCargueira extends NaveEspacial {
     private NivelAmeaca nivelAmeaca = NivelAmeaca.SEGURO;
     double capacidadeDeCarga;
     double cargaAtual;
-    private boolean explodiu = false;
 
     public NaveCargueira(String name, double integridadeCasco, TipoCombustivel combustivel) {
         super(name, integridadeCasco, combustivel);
@@ -18,10 +17,9 @@ public class NaveCargueira extends NaveEspacial{
 
     @Override
     public void executarMissao(NivelAmeaca nivelAmeaca) {
-        switch (nivelAmeaca){
+        switch (nivelAmeaca) {
             case PERIGO_IMINENTE:
                 this.nivelAmeaca = nivelAmeaca;
-                this.sofrerDano(8);
                 this.cargaAtual -= 2;
                 break;
             case ATENCAO, SEGURO:
@@ -35,28 +33,34 @@ public class NaveCargueira extends NaveEspacial{
         System.out.println("A nave "+this.getName());
         System.out.println("Com o combustível "+this.getCombustivel());
 
-        System.out.println("ESTADO ATUAL QUE A NAVE SE ENCONTRA: ");
-        if(explodiu){
-            System.out.println("NÃO A MAIS NADA A SER FEITO NAVE EXPLODIU... :(((");
+
+
+        if(this.isExplodiu()){
+            System.out.println("NÃO HÁ MAIS NADA A SER FEITO A NAVE "+this.getName()+" EXPLODIU... :(((");
             return;
+        }else{
+            System.out.println("Integridade do casco: {"+this.getIntegridadeCasco()+"} com a capacidade de carga["+this.capacidadeDeCarga+"] e carga atual de ["+this.cargaAtual+"]");
+            if(this.getIntegridadeCasco() <= 20 && this.getIntegridadeCasco() > 0){
+                System.out.println("##### NAVE ESPACIAL COM DANO SEVERO COM MENOS DE 20% DE SUA INTEGRIDADE TOTAL, PERIGO DE EXPLOSAO IMINENTE #####");
+            }else if(this.getIntegridadeCasco() <= 0){
+                this.setExplodiu(true);
+                System.out.println("NÃO HÁ MAIS NADA A SER FEITO A NAVE "+this.getName()+" EXPLODIU... :(((");
+                return;
+            }
         }
-        switch (this.nivelAmeaca){
+        System.out.println("ESTADO ATUAL QUE A NAVE SE ENCONTRA: ");
+        switch (this.nivelAmeaca) {
             case PERIGO_IMINENTE:
                 System.out.println("PERIGO IMINENTE!! -NAVE FAZENDO UMA FORTE MANOBRA EVASIVA - SOFREU DANO - PERDEU PARTE DE SUA CARGA ATUAL");
                 break;
             case ATENCAO:
-                System.out.println("ATENÇÃO!! -NAVE PREPARA AS ARMAS PARA QUALQUER AMEAÇA QUE POSSA SURGIR");
+                System.out.println("ATENÇÃO!! -NAVE PREPARA SEUS JATOS PARA QUALQUER MANOBRA EVASIVA QUE POSSA SURGIR");
                 break;
             case SEGURO:
-                System.out.println("SEGURO!! -NAVE PATRULHANDO... TUDO CALMO POR AQUI...");
+                System.out.println("SEGURO!! -NAVE TRAFEGANDO PARA SUAS ENTREGAS... TUDO CALMO POR AQUI...");
                 break;
         }
-        System.out.println("Integridade do casco: {"+this.getIntegridadeCasco()+"} capacidade de carga: ["+this.capacidadeDeCarga+"] carga atual: ["+this.cargaAtual+"]");
-        if(this.getIntegridadeCasco() <= 20 && this.getIntegridadeCasco() > 0){
-            System.out.println("NAVE ESPACIAL COM DANO SEVERO COM MENOS DE 20% DE SUA INTEGRIDADE TOTAL, PERIGO DE EXPLOSAO IMINENTE");
-        }else if(this.getIntegridadeCasco() <= 0){
-            explodiu = true;
-        }
+
     }
 
     public double getCapacidadeDeCarga() {

@@ -4,6 +4,7 @@ public abstract class NaveEspacial implements Atacavel,Comunicavel {
     private String name;
     private double integridadeCasco = 100;
     private TipoCombustivel combustivel;
+    private boolean explodiu = false;
 
     public NaveEspacial(String name, double integridadeCasco, TipoCombustivel combustivel) {
         this.name = name;
@@ -44,5 +45,13 @@ public abstract class NaveEspacial implements Atacavel,Comunicavel {
 
     public void setCombustivel(TipoCombustivel combustivel) {
         this.combustivel = combustivel;
+    }
+
+    public boolean isExplodiu() {
+        return explodiu;
+    }
+
+    public void setExplodiu(boolean explodiu) {
+        this.explodiu = explodiu;
     }
 }
