@@ -16,6 +16,9 @@ public abstract class NaveEspacial implements Atacavel,Comunicavel {
     @Override
     public void sofrerDano(double quantidade) {
         this.integridadeCasco = this.integridadeCasco - quantidade;
+        if(this.integridadeCasco <= 0){
+            this.integridadeCasco = 0.0F;
+        }
     }
 
 
