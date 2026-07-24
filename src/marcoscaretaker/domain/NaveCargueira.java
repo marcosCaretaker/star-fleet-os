@@ -30,21 +30,20 @@ public class NaveCargueira extends NaveEspacial {
 
     @Override
     public void enviarRelatorio() {
-        System.out.println("A nave "+this.getName());
-        System.out.println("Com o combustível "+this.getCombustivel());
+        System.out.println("A nave " + this.getName());
+        System.out.println("Com o combustível " + this.getCombustivel());
 
 
-
-        if(this.isExplodiu()){
-            System.out.println("NÃO HÁ MAIS NADA A SER FEITO A NAVE "+this.getName()+" EXPLODIU... :(((");
+        if (this.isExplodiu()) {
+            System.out.println("NÃO HÁ MAIS NADA A SER FEITO A NAVE " + this.getName() + " EXPLODIU... :(((");
             return;
-        }else{
-            System.out.println("Integridade do casco: {"+this.getIntegridadeCasco()+"} com a capacidade de carga["+this.capacidadeDeCarga+"] e carga atual de ["+this.cargaAtual+"]");
-            if(this.getIntegridadeCasco() <= 20 && this.getIntegridadeCasco() > 0){
-                System.out.println("##### NAVE ESPACIAL COM DANO SEVERO COM MENOS DE 20% DE SUA INTEGRIDADE TOTAL, PERIGO DE EXPLOSAO IMINENTE #####");
-            }else if(this.getIntegridadeCasco() <= 0){
+        } else {
+            System.out.println("Integridade do casco: {" + this.getIntegridadeCasco() + "%} com a capacidade de carga[" + this.capacidadeDeCarga + "] e carga atual de [" + this.cargaAtual + "]");
+            if (this.getIntegridadeCasco() <= 20 && this.getIntegridadeCasco() > 0) {
+                System.out.println("##### NAVE ESPACIAL COM MENOS DE 20% DE SUA INTEGRIDADE TOTAL, PERIGO DE EXPLOSAO IMINENTE #####");
+            } else if (this.getIntegridadeCasco() <= 0) {
                 this.setExplodiu(true);
-                System.out.println("NÃO HÁ MAIS NADA A SER FEITO A NAVE "+this.getName()+" EXPLODIU... :(((");
+                System.out.println("NÃO HÁ MAIS NADA A SER FEITO A NAVE " + this.getName() + " EXPLODIU... :(((");
                 return;
             }
         }

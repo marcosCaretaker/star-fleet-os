@@ -41,9 +41,9 @@ public class NaveCientifica extends NaveEspacial {
             System.out.println("NÃO HÁ MAIS NADA A SER FEITO A NAVE " + this.getName() + " EXPLODIU... :(((");
             return;
         } else {
-            System.out.println("Integridade do casco: {" + this.getIntegridadeCasco() + "} nave está com o projeto de pesquisa[" + this.projetoPesquisa + "] com sua potência em [" + this.porcentagemProjetoPesquisa + "%]");
+            System.out.println("Integridade do casco: {" + this.getIntegridadeCasco() + "%} nave está com o projeto de pesquisa[" + this.projetoPesquisa + "] com sua potência em [" + this.porcentagemProjetoPesquisa + "%]");
             if (this.getIntegridadeCasco() <= 20 && this.getIntegridadeCasco() > 0) {
-                System.out.println("##### NAVE ESPACIAL COM DANO SEVERO COM MENOS DE 20% DE SUA INTEGRIDADE TOTAL, PERIGO DE EXPLOSAO IMINENTE #####");
+                System.out.println("##### NAVE ESPACIAL COM MENOS DE 20% DE SUA INTEGRIDADE TOTAL, PERIGO DE EXPLOSAO IMINENTE #####");
             } else if (this.getIntegridadeCasco() <= 0) {
                 this.setExplodiu(true);
                 System.out.println("NÃO HÁ MAIS NADA A SER FEITO A NAVE " + this.getName() + " EXPLODIU... :(((");

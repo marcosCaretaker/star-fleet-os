@@ -1,6 +1,6 @@
 package marcoscaretaker.domain;
 
-public abstract class NaveEspacial implements Atacavel,Comunicavel {
+public abstract class NaveEspacial implements Atacavel, Comunicavel {
     private String name;
     private double integridadeCasco = 100;
     private TipoCombustivel combustivel;
@@ -17,7 +17,7 @@ public abstract class NaveEspacial implements Atacavel,Comunicavel {
     @Override
     public void sofrerDano(double quantidade) {
         this.integridadeCasco = this.integridadeCasco - quantidade;
-        if(this.integridadeCasco <= 0){
+        if (this.integridadeCasco <= 0) {
             this.integridadeCasco = 0.0F;
         }
     }
